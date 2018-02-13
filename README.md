@@ -1,2 +1,2 @@
 # Exercise_RxSwift
-Build an example project for RxSwift Observable
+Build an example project for RxSwift 
