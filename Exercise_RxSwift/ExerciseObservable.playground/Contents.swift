@@ -3,8 +3,6 @@
 import UIKit
 import RxSwift
 
-var str = "Hello, playground"
-
 example(of: "Obeservable") {
     let one = 1
     let two = 2
