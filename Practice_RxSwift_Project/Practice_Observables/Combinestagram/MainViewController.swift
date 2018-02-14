@@ -60,7 +60,11 @@ class MainViewController: UIViewController {
     }
 
     @IBAction func actionAdd() {
-        images.value.append(UIImage(named: "IMG_1907.jpg")!)
+//        images.value.append(UIImage(named: "IMG_1907.jpg")!)
+
+        let photosViewController = storyboard!.instantiateViewController(withIdentifier: "PhotosViewController") as! PhotosViewController
+
+        navigationController!.pushViewController(photosViewController, animated: true)
     }
 
     func showMessage(_ title: String, description: String? = nil) {
