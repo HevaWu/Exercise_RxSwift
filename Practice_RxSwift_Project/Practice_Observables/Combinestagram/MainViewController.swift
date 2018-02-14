@@ -69,6 +69,8 @@ class MainViewController: UIViewController {
                 guard let images = self?.images else { return }
                 images.value.append(newImage)
                 }, onDisposed: {
+                    //currently the subscription is not disposed! never free the memory
+                    //currently this subscription will be disposed, if bag object is released, or when the sequence completes via an error or completed event
                     print("completed photo selection")
             })
             .disposed(by: bag)

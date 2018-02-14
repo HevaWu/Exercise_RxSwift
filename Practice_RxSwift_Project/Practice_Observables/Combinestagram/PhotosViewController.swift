@@ -58,6 +58,8 @@ class PhotosViewController: UICollectionViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
 
+        //for dispose the subscription
+        selectedPhotosSubject.onCompleted()
     }
 
     // MARK: UICollectionView
