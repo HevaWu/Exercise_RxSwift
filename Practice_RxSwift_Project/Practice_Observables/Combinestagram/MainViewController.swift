@@ -90,6 +90,9 @@ class MainViewController: UIViewController {
         let newPhotos = photosViewController.selectedPhotos.share()
         
         newPhotos
+            .filter{ newImage in
+                return newImage.size.width > newImage.size.height
+            }
             .subscribe(onNext: { [weak self] newImage in
                 guard let images = self?.images else { return }
                 images.value.append(newImage)
