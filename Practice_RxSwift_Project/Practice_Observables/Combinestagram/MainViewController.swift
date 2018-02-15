@@ -51,6 +51,13 @@ class MainViewController: UIViewController {
             .disposed(by: bag)
     }
 
+    private func updateUI(photos: [UIImage]) {
+        buttonSave.isEnabled = photos.count > 0 && photos.count % 2 == 0
+        buttonClear.isEnabled = photos.count > 0
+        itemAdd.isEnabled = photos.count < 6
+        title = photos.count > 0 ? "\(photos.count) photos" : "Collage"
+    }
+
     @IBAction func actionClear() {
         images.value = []
     }
@@ -63,7 +70,7 @@ class MainViewController: UIViewController {
                 self?.showMessage("Saved with id: \(id)")
                 self?.actionClear()
                 }, onError: { [weak self] error in
-                self?.showMessage("Erro", description: error.localizedDescription)
+                    self?.showMessage("Error", description: error.localizedDescription)
             })
             .disposed(by: bag)
     }
@@ -72,7 +79,7 @@ class MainViewController: UIViewController {
         //        images.value.append(UIImage(named: "IMG_1907.jpg")!)
 
         let photosViewController = storyboard!.instantiateViewController(withIdentifier: "PhotosViewController") as! PhotosViewController
-
+        
         photosViewController.selectedPhotos
             .subscribe(onNext: { [weak self] newImage in
                 guard let images = self?.images else { return }
@@ -88,15 +95,8 @@ class MainViewController: UIViewController {
     }
 
     func showMessage(_ title: String, description: String? = nil) {
-        let alert = UIAlertController(title: title, message: description, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Close", style: .default, handler: { [weak self] _ in self?.dismiss(animated: true, completion: nil)}))
-        present(alert, animated: true, completion: nil)
-    }
-
-    private func updateUI(photos: [UIImage]) {
-        buttonSave.isEnabled = photos.count > 0 && photos.count % 2 == 0
-        buttonClear.isEnabled = photos.count > 0
-        itemAdd.isEnabled = photos.count < 6
-        title = photos.count > 0 ? "\(photos.count) photos" : "Collage"
+        alert(title: title, message: description)
+            .subscribe()
+            .disposed(by: bag)
     }
 }
