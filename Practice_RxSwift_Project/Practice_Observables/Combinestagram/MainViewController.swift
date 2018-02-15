@@ -24,18 +24,18 @@ import UIKit
 import RxSwift
 
 class MainViewController: UIViewController {
-
+    
     @IBOutlet weak var imagePreview: UIImageView!
     @IBOutlet weak var buttonClear: UIButton!
     @IBOutlet weak var buttonSave: UIButton!
     @IBOutlet weak var itemAdd: UIBarButtonItem!
-
+    
     private let bag = DisposeBag()
     private let images = Variable<[UIImage]>([])
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         images.asObservable()
             .subscribe(onNext: { [weak self] photos in
                 //use weak self to prevent memory leak
@@ -43,14 +43,14 @@ class MainViewController: UIViewController {
                 preview.image = UIImage.collage(images: photos, size: preview.frame.size)
             })
             .disposed(by: bag)
-
+        
         images.asObservable()
             .subscribe(onNext: { [weak self] photos in
                 self?.updateUI(photos: photos)
             })
             .disposed(by: bag)
     }
-
+    
     private func updateUI(photos: [UIImage]) {
         buttonSave.isEnabled = photos.count > 0 && photos.count % 2 == 0
         buttonClear.isEnabled = photos.count > 0
@@ -58,13 +58,21 @@ class MainViewController: UIViewController {
         title = photos.count > 0 ? "\(photos.count) photos" : "Collage"
     }
 
+    private func updateNavigationIcon() {
+        let icon = imagePreview.image?
+        .scaled(CGSize(width: 22, height: 22))
+        .withRenderingMode(.alwaysOriginal)
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: icon, style: .done, target: nil, action: nil)
+    }
+    
     @IBAction func actionClear() {
         images.value = []
     }
-
+    
     @IBAction func actionSave() {
         guard let image = imagePreview.image else { return }
-
+        
         PhotoWriter.save(image)
             .subscribe(onSuccess: {[weak self] id in
                 self?.showMessage("Saved with id: \(id)")
@@ -74,13 +82,14 @@ class MainViewController: UIViewController {
             })
             .disposed(by: bag)
     }
-
+    
     @IBAction func actionAdd() {
-        //        images.value.append(UIImage(named: "IMG_1907.jpg")!)
-
         let photosViewController = storyboard!.instantiateViewController(withIdentifier: "PhotosViewController") as! PhotosViewController
         
-        photosViewController.selectedPhotos
+        //use share to avoid create new Observable instance
+        let newPhotos = photosViewController.selectedPhotos.share()
+        
+        newPhotos
             .subscribe(onNext: { [weak self] newImage in
                 guard let images = self?.images else { return }
                 images.value.append(newImage)
@@ -90,10 +99,17 @@ class MainViewController: UIViewController {
                     print("completed photo selection")
             })
             .disposed(by: bag)
-
+        
+        newPhotos
+            .ignoreElements()
+            .subscribe(onCompleted: { [weak self] in
+                self?.updateNavigationIcon()
+            })
+            .disposed(by: bag)
+        
         navigationController!.pushViewController(photosViewController, animated: true)
     }
-
+    
     func showMessage(_ title: String, description: String? = nil) {
         alert(title: title, message: description)
             .subscribe()
