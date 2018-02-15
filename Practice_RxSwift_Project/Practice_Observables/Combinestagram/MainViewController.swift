@@ -92,6 +92,10 @@ class MainViewController: UIViewController {
         let newPhotos = photosViewController.selectedPhotos.share()
         
         newPhotos
+            .takeWhile{ [weak self] image in
+                //when user in Photo view controller, they should only allow to pick <6 pictures
+                return (self?.images.value.count ?? 0) < 6
+            }
             .filter{ newImage in
                 return newImage.size.width > newImage.size.height
             }
