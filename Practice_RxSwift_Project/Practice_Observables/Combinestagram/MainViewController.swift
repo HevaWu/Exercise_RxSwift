@@ -36,8 +36,11 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        //throttle filter any elements follwed by another one within the spercified time interval
+        //if user select one photo and taps the second one after 0.5 second, throttle filter the first one and only let second one in 
         images.asObservable()
+            .throttle(0.5, scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self] photos in
                 //use weak self to prevent memory leak
                 guard let preview = self?.imagePreview else { return }
