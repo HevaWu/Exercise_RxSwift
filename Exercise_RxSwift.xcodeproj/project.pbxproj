@@ -43,6 +43,7 @@
 		F0B616C72032C70000475378 /* Exercise_RxSwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Exercise_RxSwiftUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B616CB2032C70000475378 /* Exercise_RxSwiftUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Exercise_RxSwiftUITests.swift; sourceTree = "<group>"; };
 		F0B616CD2032C70000475378 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F0BD383120367DD1007CB877 /* Exercise_Transforming.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Exercise_Transforming.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +105,7 @@
 		F0B616B52032C70000475378 /* Exercise_RxSwift */ = {
 			isa = PBXGroup;
 			children = (
+				F0BD383120367DD1007CB877 /* Exercise_Transforming.playground */,
 				F0ABA6722035351600184058 /* Exercise_FilterOperator.playground */,
 				F05A5D802032D1CD00D1AEB5 /* Exercise_Subjects.playground */,
 				F05A5D7F2032C8A800D1AEB5 /* ExerciseObservable.playground */,
@@ -270,11 +272,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-Exercise_RxSwift/Pods-Exercise_RxSwift-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwiftExt.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
