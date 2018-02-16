@@ -25,6 +25,7 @@ import Photos
 import RxSwift
 
 class PhotosViewController: UICollectionViewController {
+    private let bag = DisposeBag()
 
     // MARK: public properties
 
@@ -49,9 +50,46 @@ class PhotosViewController: UICollectionViewController {
         return PHAsset.fetchAssets(with: allPhotosOptions)
     }
 
+    private func errorMessage() {
+        alert(title: "No access to Camera Roll", message: "You can grant access to Combinestagram from the Settings app")
+            .subscribe(onCompleted: { [weak self] in
+                self?.dismiss(animated: true, completion: nil)
+                _ = self?.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: bag)
+    }
+
     // MARK: View Controller
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let authorized = PHPhotoLibrary.authorized.share()
+
+        authorized.skipWhile {
+            //skip all false element
+            //take 1, only take one true element, then ignore everything after it
+            $0 == false
+            }.take(1)
+            .subscribe(onNext: { [weak self] _ in
+                self?.photos = PhotosViewController.loadPhotos()
+
+                DispatchQueue.main.async {
+                    self?.collectionView?.reloadData()
+                }
+            })
+            .disposed(by: bag)
+
+        authorized.skip(1)
+            .takeLast(1)
+            .filter {
+                !$0
+            }
+            .subscribe(onNext: { [weak self] _ in
+                guard let errorMessage = self?.errorMessage else { return }
+
+                DispatchQueue.main.async(execute: errorMessage)
+            })
+            .disposed(by: bag)
 
     }
 
