@@ -85,7 +85,10 @@ class ActivityController: UITableViewController {
                 return objects.map(Event.init)
             }.subscribe(onNext: { [weak self] newEvents in
                 self?.processEvents(newEvents)
-                self?.tableView.reloadData()
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                    self?.refreshControl?.endRefreshing()
+                }
             })
             .disposed(by: bag)
     }
