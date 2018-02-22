@@ -2,6 +2,7 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
 
 /* “PublishSubject: Starts empty and only emits new elements to subscribers.”
  * “BehaviorSubject: Starts with an initial value and replays it or the latest element to new subscribers.”
@@ -109,9 +110,19 @@ example(of: "ReplaySubject") {
 }
 
 example(of: "Variable") {
+    let disposeBag = DisposeBag()
+
+    let relay = BehaviorRelay<Int>(value: 0)
+    relay.asDriver()
+        .drive(onNext: { value in
+            print(value)
+        })
+        .disposed(by: disposeBag)
+    relay.accept(1)
+    print(relay.value)
+
     let variable = Variable("Initial value")
 
-    let disposeBag = DisposeBag()
 
     variable.value = "New initial value"
 

@@ -74,17 +74,32 @@ class ActivityController: UITableViewController {
     func fetchEvents(repo: String) {
         //use shareReplay .whileConnected allows more subscriptions to the result of the web request
         //not use .forever because this one will keep the buffered element forever
-        let response = Observable.from([repo])
+        let response = Observable.from(["https://api.github.com/search/repositories?q=language:swift&per_page=5"])
             .map { urlString -> URL in
-                return URL(string: "https://api.github.com/repos/\(urlString)/events")!
+                return URL(string: urlString)!
             }
-            .map { [weak self] url -> URLRequest in
+            .flatMap{ url -> Observable<Any> in
+                let request = URLRequest(url: url)
+                return URLSession.shared.rx.json(request: request)
+            }
+            .flatMap{ response -> Observable<String> in
+                guard let response = response as? [String: Any],
+                    let items = response["items"] as? [[String: Any]] else {
+                        return Observable.empty()
+                }
+                return Observable.from(items.map { $0["full_name"] as! String })
+            }
+            .map{ urlString -> URL in
+                return URL(string: "https://api.github.com/repos/\(urlString)/events?per_page=5")!
+            }
+            .map{ [weak self] url -> URLRequest in
                 var request = URLRequest(url: url)
                 if let modifiedHeader = self?.lastModified.value {
                     request.addValue(modifiedHeader as String, forHTTPHeaderField: "Last-Modified")
                 }
                 return request
-            }.flatMap { request -> Observable<(response: HTTPURLResponse, data: Data)> in
+            }
+            .flatMap { request -> Observable<(response: HTTPURLResponse, data: Data)> in
                 //will complete whenver app receives the full response from the web server
                 //flapMap allowed send the request and receive the response
                 return URLSession.shared.rx.response(request: request)

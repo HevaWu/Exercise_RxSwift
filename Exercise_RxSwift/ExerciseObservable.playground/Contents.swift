@@ -107,9 +107,9 @@ example(of: "create") {
     Observable<String>.create{ observer -> Disposable in
         observer.onNext("1")
 
-        //        observer.onError(MyError.anError)
-
-        //        observer.onCompleted()
+//                observer.onError(MyError.anError)
+//
+//                observer.onCompleted()
 
         observer.onNext("?")
 
