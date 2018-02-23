@@ -33,6 +33,7 @@
 		F05A5D802032D1CD00D1AEB5 /* Exercise_Subjects.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Exercise_Subjects.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F090A091122DBD1439024415 /* Pods-Exercise_RxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exercise_RxSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Exercise_RxSwift/Pods-Exercise_RxSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		F0ABA6722035351600184058 /* Exercise_FilterOperator.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Exercise_FilterOperator.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		F0AEEF8D203E96AA00DA7F4D /* Exercise_Combining.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Exercise_Combining.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F0B616B32032C70000475378 /* Exercise_RxSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exercise_RxSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F0B616B62032C70000475378 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F0B616B82032C70000475378 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +106,7 @@
 		F0B616B52032C70000475378 /* Exercise_RxSwift */ = {
 			isa = PBXGroup;
 			children = (
+				F0AEEF8D203E96AA00DA7F4D /* Exercise_Combining.playground */,
 				F0BD383120367DD1007CB877 /* Exercise_Transforming.playground */,
 				F0ABA6722035351600184058 /* Exercise_FilterOperator.playground */,
 				F05A5D802032D1CD00D1AEB5 /* Exercise_Subjects.playground */,
