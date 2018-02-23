@@ -102,7 +102,13 @@ class EONET {
         let closedEvents = events(forLast: days, closed: true)
 
         //emit the open and then closed
-        return openEvents.concat(closedEvents)
+        //start with empty array, each time one observables delivers, called it
+        //once completed, reduce emits a single value (current state) and completes
+        return Observable.of(openEvents, closedEvents)
+            .merge()
+            .reduce([]) { running, new in
+                running + new
+        }
     }
 
     fileprivate static func events(forLast days: Int, closed: Bool) -> Observable<[EOEvent]> {
