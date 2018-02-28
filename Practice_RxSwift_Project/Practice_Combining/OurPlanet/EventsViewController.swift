@@ -31,6 +31,9 @@ class EventsViewController : UIViewController, UITableViewDataSource {
 
     let events = Variable<[EOEvent]>([])
     let disposeBag = DisposeBag()
+    
+    let days = Variable<Int>(360)
+    let filteredEvents = Variable<[EOEvent]>([])
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,24 +42,46 @@ class EventsViewController : UIViewController, UITableViewDataSource {
         tableView.estimatedRowHeight = 60
 
         //update the table view everytime events gets a new value
-        events.asObservable()
+        //build tableview to filteredEvents
+        filteredEvents.asObservable()
             .subscribe(onNext: { [weak self] _ in
                 self?.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+        
+        Observable.combineLatest(days.asObservable(), events.asObservable()) { (days, events) -> [EOEvent] in
+            let maxInterval = TimeInterval(days * 24 * 3600)
+            return events.filter { event in
+                if let date = event.closeDate {
+                    return abs(date.timeIntervalSinceNow) < maxInterval
+                }
+                return true
+            }
+        }
+        .bind(to: filteredEvents)
+        .disposed(by: disposeBag)
+        
+        //Update days label text
+        days.asObservable()
+            .subscribe(onNext: { [weak self] days in
+                self?.daysLabel.text = "Last \(days) days"
             })
             .disposed(by: disposeBag)
     }
 
     @IBAction func sliderAction(slider: UISlider) {
+        //bind the slider to days value
+        days.value = Int(slider.value)
     }
 
     // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return events.value.count
+        return filteredEvents.value.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "eventCell") as! EventCell
-        let event = events.value[indexPath.row]
+        let event = filteredEvents.value[indexPath.row]
         cell.configure(event: event)
         return cell
     }
