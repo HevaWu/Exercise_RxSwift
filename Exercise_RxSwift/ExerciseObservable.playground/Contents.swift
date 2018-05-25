@@ -223,5 +223,43 @@ example(of: "debug") {
         .disposed(by: disposeBag)
 }
 
+example(of: "Observable_Dispose_Error") {
+    let disposeBag = DisposeBag()
+    
+    let publish = PublishSubject<Int>()
+    let publish1 = PublishSubject<Int>()
 
+    
+    enum ObservableError: Error {
+        case error
+    }
+    
+    publish1
+        .debug("Publish1")
+        .flatMap {_ in
+            publish
+                .debug("Publish")
+                .catchErrorJustReturn(3)
+        }
+//        .catchErrorJustReturn(13)
+        .subscribe(onNext: { element in
+            print(element)
+        }, onError: { element in
+            print(element)
+        }, onCompleted: {
+            print("Completed")
+        }, onDisposed: {
+            print("Disposed")
+        })
+        .disposed(by: disposeBag)
+    
+    publish1.onNext(11)
+    
+    publish.onNext(1)
+    publish.onError(ObservableError.error)
+    publish.onCompleted()
+    publish.onNext(2)
+    
+    publish1.onNext(12)
+}
 

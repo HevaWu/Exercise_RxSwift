@@ -2,6 +2,8 @@
 
 import UIKit
 import RxSwift
+import RxCocoa
+import Realm
 
 /* “PublishSubject: Starts empty and only emits new elements to subscribers.”
  * “BehaviorSubject: Starts with an initial value and replays it or the latest element to new subscribers.”
@@ -240,4 +242,14 @@ example(of: "Variable") {
             print("Successfully did something only a logged in user can do.")
         }
     }
+}
+
+example(of: "BehaviowRelay") {
+    let behaviorRelay = BehaviorRelay(value: "1")
+    behaviorRelay.asDriver()
+        .debug("Debug----BehaviorRelay")
+        .drive(onNext: { value in
+            print(value)
+        })
+    behaviorRelay.accept("2")
 }
