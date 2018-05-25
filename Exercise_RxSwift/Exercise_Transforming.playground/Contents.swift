@@ -4,6 +4,7 @@ import UIKit
 import RxSwift
 import RxSwiftExt
 
+
 example(of: "toArray") {
     let disposeBag = DisposeBag()
 
@@ -49,6 +50,7 @@ example(of: "enumerated and map") {
 struct Student {
     var score: BehaviorSubject<Int>
 }
+<<<<<<< Updated upstream
 
 example(of: "flatMap") {
     let disposeBag = DisposeBag()
@@ -266,3 +268,5 @@ example(of: "Challenge 1") {
 
     input.value = "9"
 }
+=======
+>>>>>>> Stashed changes

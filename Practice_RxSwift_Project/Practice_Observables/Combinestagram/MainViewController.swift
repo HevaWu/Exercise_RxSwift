@@ -33,6 +33,29 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //throttle filter any elements follwed by another one within the spercified time interval
+        //if user select one photo and taps the second one after 0.5 second, throttle filter the first one and only let second one in
+        images.asObservable()
+            .throttle(0.5, scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self] photos in
+                //use weak self to prevent memory leak
+                guard let preview = self?.imagePreview else { return }
+                preview.image = UIImage.collage(images: photos, size: preview.frame.size)
+            })
+            .disposed(by: bag)
+        
+        images.asObservable()
+            .subscribe(onNext: { [weak self] photos in
+                self?.updateUI(photos: photos)
+            })
+            .disposed(by: bag)
+    }
+    
+    private func updateUI(photos: [UIImage]) {
+        buttonSave.isEnabled = photos.count > 0 && photos.count % 2 == 0
+        buttonClear.isEnabled = photos.count > 0
+        itemAdd.isEnabled = photos.count < 6
+        title = photos.count > 0 ? "\(photos.count) photos" : "Collage"
     }
 
     @IBAction func actionClear() {
