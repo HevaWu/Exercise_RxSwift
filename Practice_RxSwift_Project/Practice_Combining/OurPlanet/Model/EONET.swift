@@ -44,7 +44,7 @@ class EONET {
             let categories = data["categories"] as? [[String: Any]] ?? []
 
             //map the categories array to EOCategory objects and sort them by the name
-            return categories.flatMap(EOCategory.init)
+            return categories.compactMap(EOCategory.init)
                 .sorted { $0.name < $1.name}
         }
         .catchErrorJustReturn([])
@@ -71,7 +71,7 @@ class EONET {
                     throw EOError.invalidURL(endpoint)
             }
 
-            components.queryItems = try query.flatMap{ (key, value) in
+            components.queryItems = try query.compactMap{ (key, value) in
                 guard let v = value as? CustomStringConvertible else {
                     throw EOError.invalidParameter(key, value)
                 }
@@ -121,7 +121,7 @@ class EONET {
                 guard let raw = json["events"] as? [[String: Any]] else {
                     throw EOError.invalidJSON(eventsEndpoint)
                 }
-                return raw.flatMap(EOEvent.init)
+                return raw.compactMap(EOEvent.init)
             }
             .catchErrorJustReturn([])
     }
