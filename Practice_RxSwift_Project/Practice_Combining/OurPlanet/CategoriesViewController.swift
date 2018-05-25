@@ -28,6 +28,7 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
 
     @IBOutlet var tableView: UITableView!
     var activityIndicator: UIActivityIndicatorView!
+    let downloadView = DownloadView()
 
     let categories = Variable<[EOCategory]>([])
     let disposeBag = DisposeBag()
@@ -39,6 +40,10 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
         activityIndicator.color = .black
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
         activityIndicator.startAnimating()
+        
+        view.addSubview(downloadView)
+        view.layoutIfNeeded()
+        print(downloadView.frame)
 
         categories.asObservable()
             .subscribe(onNext: { [weak self] _ in
@@ -52,6 +57,9 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     }
 
     func startDownload() {
+        downloadView.progress.progress = 0
+        downloadView.label.text = "Download: 0%"
+        
         //download the events and categories and combine the categories in one observable
         let eoCategories = EONET.categories
 
@@ -67,8 +75,8 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
         //update the categories when new events group emit
         let updatedCategories = eoCategories.flatMap{ categories in
             // each time a new group of events come, scan emits the category update
-            downloadedEvents.scan(categories) { updated, events in
-                return updated.map { category in
+            downloadedEvents.scan((0, categories)) { updated, events in
+                return (updated.0 + 1, updated.1.map { category in
                     let eventsForCategory = EONET.filteredEvents(events: events, forCategory: category)
                     if !eventsForCategory.isEmpty {
                         var cat = category
@@ -76,16 +84,24 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
                         return cat
                     }
                     return category
-                }
+                })
             }
         }
-            .do(onCompleted: {[weak self] in
+            .do(onNext: { [weak self] updated in
+                DispatchQueue.main.async {
+                    let progress = Float(updated.0) / Float(updated.1.count)
+                    self?.downloadView.progress.progress = progress
+                    let percent = Int(progress * 100.0)
+                    self?.downloadView.label.text = "Download: \(percent)%"
+                }
+            }, onCompleted: {[weak self] in
                 DispatchQueue.main.async {
                     self?.activityIndicator.stopAnimating()
+                    self?.downloadView.isHidden = true
                 }
             })
 
-        eoCategories.concat(updatedCategories)
+        eoCategories.concat(updatedCategories.map{ $0.1 })
             .bind(to: categories)
             .disposed(by: disposeBag)
     }

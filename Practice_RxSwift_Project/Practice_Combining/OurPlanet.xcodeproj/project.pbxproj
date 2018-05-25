@@ -20,6 +20,7 @@
 		D8D4B99E9352271FA7C4C3CA /* EONET.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D4BAA4F4C10477E0535C81 /* EONET.swift */; };
 		D8D4BE89A62A1F0415C0DF42 /* EOEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D4B6D93EEB59915317AA1D /* EOEvent.swift */; };
 		D8D4BF1B403B74C10D576473 /* EOError.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8D4BE9443CDA2DB4BF2835C /* EOError.swift */; };
+		F091E9D220B801F2009EAA30 /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F091E9D120B801F2009EAA30 /* DownloadView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		D8D4B8B9345BB7B3111B3486 /* EOLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EOLocation.swift; sourceTree = "<group>"; };
 		D8D4BAA4F4C10477E0535C81 /* EONET.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EONET.swift; sourceTree = "<group>"; };
 		D8D4BE9443CDA2DB4BF2835C /* EOError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EOError.swift; sourceTree = "<group>"; };
+		F091E9D120B801F2009EAA30 /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -83,6 +85,7 @@
 				3D46E6331E258DFC0090C97B /* Info.plist */,
 				D8D4B1AF36E540D16E9AC066 /* EventsViewController.swift */,
 				D8D4B590E2532FBB4E15A320 /* EventCell.swift */,
+				F091E9D120B801F2009EAA30 /* DownloadView.swift */,
 				D8D4B8DAB960CC6D73230C61 /* Model */,
 			);
 			path = OurPlanet;
@@ -252,6 +255,7 @@
 				3D46E6281E258DFC0090C97B /* AppDelegate.swift in Sources */,
 				D8D4B93D3B0419880A462D8C /* EventsViewController.swift in Sources */,
 				D8D4B3B53FB9DBEFD316986D /* EventCell.swift in Sources */,
+				F091E9D220B801F2009EAA30 /* DownloadView.swift in Sources */,
 				D8D4B8E35C10E832C1CFE0B0 /* EOCategory.swift in Sources */,
 				D8D4BF1B403B74C10D576473 /* EOError.swift in Sources */,
 				D8D4BE89A62A1F0415C0DF42 /* EOEvent.swift in Sources */,
