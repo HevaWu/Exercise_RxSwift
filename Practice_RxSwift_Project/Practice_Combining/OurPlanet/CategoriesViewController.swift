@@ -27,12 +27,18 @@ import RxCocoa
 class CategoriesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet var tableView: UITableView!
+    var activityIndicator: UIActivityIndicatorView!
 
     let categories = Variable<[EOCategory]>([])
     let disposeBag = DisposeBag()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.color = .black
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
+        activityIndicator.startAnimating()
 
         categories.asObservable()
             .subscribe(onNext: { [weak self] _ in
@@ -73,6 +79,11 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
                 }
             }
         }
+            .do(onCompleted: {[weak self] in
+                DispatchQueue.main.async {
+                    self?.activityIndicator.stopAnimating()
+                }
+            })
 
         eoCategories.concat(updatedCategories)
             .bind(to: categories)
