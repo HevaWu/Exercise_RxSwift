@@ -31,6 +31,7 @@
 		BC6D078A8AFB5664E42775DB /* Pods_Exercise_RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Exercise_RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F05A5D7F2032C8A800D1AEB5 /* ExerciseObservable.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ExerciseObservable.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F05A5D802032D1CD00D1AEB5 /* Exercise_Subjects.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Exercise_Subjects.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		F078EB1D20BBD0A200794210 /* Exercise_TimeBased.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Exercise_TimeBased.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F090A091122DBD1439024415 /* Pods-Exercise_RxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exercise_RxSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Exercise_RxSwift/Pods-Exercise_RxSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		F0ABA6722035351600184058 /* Exercise_FilterOperator.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Exercise_FilterOperator.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F0AEEF8D203E96AA00DA7F4D /* Exercise_Combining.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Exercise_Combining.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -106,6 +107,7 @@
 		F0B616B52032C70000475378 /* Exercise_RxSwift */ = {
 			isa = PBXGroup;
 			children = (
+				F078EB1D20BBD0A200794210 /* Exercise_TimeBased.playground */,
 				F0AEEF8D203E96AA00DA7F4D /* Exercise_Combining.playground */,
 				F0BD383120367DD1007CB877 /* Exercise_Transforming.playground */,
 				F0ABA6722035351600184058 /* Exercise_FilterOperator.playground */,
@@ -177,7 +179,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "He Wu";
 				TargetAttributes = {
 					F0B616B22032C70000475378 = {
@@ -335,6 +337,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -342,6 +345,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -392,6 +396,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -399,6 +404,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -434,6 +440,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RCDAB3TZP2;
 				INFOPLIST_FILE = Exercise_RxSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hewu.Exercise-RxSwift";
@@ -449,6 +456,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = RCDAB3TZP2;
 				INFOPLIST_FILE = Exercise_RxSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hewu.Exercise-RxSwift";
