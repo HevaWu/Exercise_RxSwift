@@ -13,7 +13,7 @@ DEPENDENCIES:
   - RxSwiftExt
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - RxCocoa
     - RxSwift
     - RxSwiftExt
@@ -25,4 +25,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 58f16da6e3ae51c4d437ef80f216ec66237a55a9
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.6.1

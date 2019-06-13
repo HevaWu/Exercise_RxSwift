@@ -31,6 +31,7 @@
 		BC6D078A8AFB5664E42775DB /* Pods_Exercise_RxSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Exercise_RxSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F05A5D7F2032C8A800D1AEB5 /* ExerciseObservable.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = ExerciseObservable.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F05A5D802032D1CD00D1AEB5 /* Exercise_Subjects.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Exercise_Subjects.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		F0634B9722B241E2003DBA6B /* Exercise_WeakSelfUnownedSelf.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Exercise_WeakSelfUnownedSelf.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F078EB1D20BBD0A200794210 /* Exercise_TimeBased.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Exercise_TimeBased.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		F090A091122DBD1439024415 /* Pods-Exercise_RxSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exercise_RxSwift.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Exercise_RxSwift/Pods-Exercise_RxSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		F0ABA6722035351600184058 /* Exercise_FilterOperator.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Exercise_FilterOperator.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -119,6 +120,7 @@
 				F0B616BD2032C70000475378 /* Assets.xcassets */,
 				F0B616BF2032C70000475378 /* LaunchScreen.storyboard */,
 				F0B616C22032C70000475378 /* Info.plist */,
+				F0634B9722B241E2003DBA6B /* Exercise_WeakSelfUnownedSelf.playground */,
 			);
 			path = Exercise_RxSwift;
 			sourceTree = "<group>";
@@ -257,7 +259,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Exercise_RxSwift/Pods-Exercise_RxSwift-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Exercise_RxSwift/Pods-Exercise_RxSwift-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwiftExt/RxSwiftExt.framework",
@@ -270,7 +272,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Exercise_RxSwift/Pods-Exercise_RxSwift-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Exercise_RxSwift/Pods-Exercise_RxSwift-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

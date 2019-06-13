@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "294139261D4460C091CDB8438D8C837F"
+               BlueprintIdentifier = "26D3C8A0C4563E81FB97B06EC8ABB9E8"
+               BuildableName = "RxSwiftExt.framework"
                BlueprintName = "RxSwiftExt"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "RxSwiftExt.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

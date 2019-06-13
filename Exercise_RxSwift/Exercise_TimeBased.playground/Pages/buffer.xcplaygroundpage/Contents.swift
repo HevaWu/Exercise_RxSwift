@@ -20,3 +20,5 @@ class TimelineView<E>: TimelineViewBase, ObserverType where E: CustomStringConve
             add(.Error())
     }
 }
+
+P
